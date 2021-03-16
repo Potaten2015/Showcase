@@ -52,7 +52,7 @@ export const saveLocation = (location) => async (dispatch) => {
     const response = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
         location.latitude.toString() + "," + location.longitude.toString()
-      }&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
+      }&key=AIzaSyAU0ITHF_k-3vhNPtK7xV9bH7ePsGz-1w8`,
       // {
       //   headers: "Access-Control-Allow-Origin: *",
       // },
