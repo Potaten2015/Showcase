@@ -7,44 +7,70 @@ import { useFrame } from "react-three-fiber";
 const CommentBoardRight = (props) => {
   const mapMesh = useRef();
   const holderFontSize = 6;
-  console.log("The state", props.resources.commentFormState);
-  const holderText = "Login to leave a comment";
-  const holderTextLength = holderText.split(" ").length;
-  const holderRefs = holderText.split(" ").map(() => createRef());
-  const displacements = [...Array(holderTextLength).keys()];
-  const deltas = new Array(holderTextLength).fill(-0.01);
   const [commentFocused, setCommentFocused] = useState(false);
   const [commentHovered, setCommentHovered] = useState(false);
-
   let commentSplit = [];
   let currentComment = props.resources.commentFormState["content"];
+  let splittable = currentComment;
   let count = 0;
-  while (currentComment.length > 50) {
+  console.log("CURRENT COMMENT LENGTH", currentComment.length);
+  Loop1: while (splittable.length > 50) {
+    let lastSpace = 0;
     count++;
-    let charTest = 50;
-    while (currentComment[charTest] != " ") {
-      charTest++;
+    let charTest = 0;
+    Loop2: while (true) {
+      if (splittable[charTest] == " ") break Loop2;
+      if (splittable[charTest]) charTest++;
+      if (!splittable[charTest]) {
+        charTest = lastSpace;
+        break Loop2;
+      }
     }
-    commentSplit.push(currentComment.slice(0, charTest));
-    currentComment = currentComment.slice(charTest + 1);
+    commentSplit.push(splittable.slice(0, charTest));
+    splittable = splittable.slice(charTest + 1);
   }
   commentSplit.push(
-    `${currentComment} - @${
+    `${splittable} - @${
       props.loginFormTools.loggedIn ? props.session.user.username : ""
     }`,
   );
-  console.log(commentSplit);
+  const holderText = props.loginFormTools.loggedIn
+    ? commentFocused
+      ? commentSplit
+      : props.resources.commentFields[0].placeholder
+    : "Login to leave a comment";
+  console.log("HOLDER TEXT", holderText);
+  const holderTextLength =
+    props.loginFormTools.loggedIn && commentFocused
+      ? holderText.length
+      : holderText.split(" ").length;
+  console.log("HOLDER TEXT LENGTH", holderTextLength);
+  const holderRefs =
+    props.loginFormTools.loggedIn && commentFocused
+      ? holderText.map(() => createRef())
+      : holderText.split(" ").map(() => createRef());
+  const displacements = [...Array(holderTextLength).keys()].map(
+    (disp, index) => {
+      return (6 * disp) / (holderTextLength - 1);
+    },
+  );
 
-  // useFrame(() => {
-  //   holderRefs.forEach((holder, index) => {
-  //     if (
-  //       holder.current.position.z + deltas[index] <= -4 ||
-  //       holder.current.position.z + deltas[index] >= -1.5
-  //     )
-  //       deltas[index] *= -1;
-  //     holder.current.position.z += deltas[index];
-  //   });
-  // });
+  const deltas = new Array(holderTextLength).fill(-0.01);
+
+  console.log("COMMENT SPLIT", commentSplit);
+  console.log("HOLDER REFS", holderRefs);
+
+  useFrame(() => {
+    holderRefs.forEach((holder, index) => {
+      if (
+        (holder.current.position.z + deltas[index] <= -7.6 &&
+          deltas[index] < 0) ||
+        (holder.current.position.z + deltas[index] >= -1.5 && deltas[index] > 0)
+      )
+        deltas[index] *= -1;
+      holder.current.position.z += deltas[index];
+    });
+  });
 
   return (
     <mesh
@@ -113,6 +139,7 @@ const CommentBoardRight = (props) => {
               position={[15, 15 - 1.3 * index, -3.5]}
               thickness={0.2}
               rotation-y={Math.PI}
+              reference={holderRefs[index]}
             />
           );
         })}

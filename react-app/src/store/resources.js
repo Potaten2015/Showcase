@@ -48,31 +48,38 @@ export const submitLogin = (loginFormData) => async (dispatch) => {
 
 export const saveLocation = (location) => async (dispatch) => {
   let saveLocation = location;
-  if (location.latitude) {
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-        location.latitude.toString() + "," + location.longitude.toString()
-      }&key=AIzaSyAU0ITHF_k-3vhNPtK7xV9bH7ePsGz-1w8`,
-      // {
-      //   headers: "Access-Control-Allow-Origin: *",
-      // },
-    );
+  // if (location.latitude) {
+  //   const response = await fetch(
+  //     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
+  //       location.latitude.toString() + "," + location.longitude.toString()
+  //     }&key=AIzaSyAU0ITHF_k-3vhNPtK7xV9bH7ePsGz-1w8`,
+  //     // {
+  //     //   headers: "Access-Control-Allow-Origin: *",
+  //     // },
+  //   );
 
-    saveLocation = await response.json();
-    let newerLocation = saveLocation.results.filter((place) => {
-      return place.types.includes("locality");
-    });
+  //   saveLocation = await response.json();
+  //   let newerLocation = saveLocation.results.filter((place) => {
+  //     return place.types.includes("locality");
+  //   });
 
-    newerLocation = newerLocation[0].formatted_address
-      .split(",")
-      .map((theOne) => theOne.trim());
-    saveLocation = {
-      city: newerLocation[0],
-      state: newerLocation[1].trim(),
-      latitude: location.latitude,
-      longitude: location.longitude,
-    };
-  }
+  //   newerLocation = newerLocation[0].formatted_address
+  //     .split(",")
+  //     .map((theOne) => theOne.trim());
+  //   saveLocation = {
+  //     city: newerLocation[0],
+  //     state: newerLocation[1].trim(),
+  //     latitude: location.latitude,
+  //     longitude: location.longitude,
+  //   };
+  // }
+
+  saveLocation = {
+    city: "Test",
+    state: "Test",
+    latitude: 0,
+    longitude: 0,
+  };
 
   dispatch(save_location(saveLocation));
   return saveLocation;
