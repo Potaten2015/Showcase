@@ -2,7 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate, login, logout, signup } from "./store/session";
-import { getResources, setFont, saveLocation } from "./store/resources";
+import {
+  getResources,
+  setFont,
+  saveLocation,
+  submitComment,
+} from "./store/resources";
 import { Environment } from "./components/Environment";
 import { Canvas } from "react-three-fiber";
 import * as Three from "../node_modules/three/build/three";
@@ -65,6 +70,10 @@ const App = () => {
         return result.errors;
       }
     });
+  };
+
+  const submitCommentFunction = async (e) => {
+    dispatch(submitComment(commentFormState));
   };
 
   // Form State Holders
@@ -190,6 +199,7 @@ const App = () => {
             {commentFields.map((field) => {
               return (
                 <input
+                  maxLength={255}
                   autoComplete="off"
                   className="hidden"
                   id={"comment" + field.fieldName}
@@ -244,6 +254,7 @@ const App = () => {
                 commentFormState,
                 setCommentFormState,
                 commentFields,
+                submitComment: submitCommentFunction,
               }}
               session={{
                 user: user,

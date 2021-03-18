@@ -1,3 +1,5 @@
+import { async } from "three";
+
 const SET_FONT = "resources/SET_FONT";
 const GET_RESOURCES = "resources/GET_RESOURCES";
 const SAVE_LOCATION = "resources/SAVE_LOCATION";
@@ -83,6 +85,18 @@ export const saveLocation = (location) => async (dispatch) => {
 
   dispatch(save_location(saveLocation));
   return saveLocation;
+};
+
+export const submitComment = ({ content, color }) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("content", content);
+  formData.append("color", color);
+  const resources = await fetch("/api/resources/comment", {
+    method: "POST",
+    body: formData,
+  });
+  const res = await resources.json();
+  dispatch(get_resources(res));
 };
 
 const initialState = {

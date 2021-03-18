@@ -1,19 +1,29 @@
 import React, { useState, useEffect, useRef, createRef } from "react";
 import * as Three from "../../../node_modules/three/build/three";
 import { Box, Pin } from "../Shapes/";
-import { TextFormField, TextStandard } from "../TextGeometry";
+import { TextButton, TextFormField, TextStandard } from "../TextGeometry";
 import { useFrame } from "react-three-fiber";
 
 const CommentBoardRight = (props) => {
+  const colors = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "purple",
+    "white",
+    "hotpink",
+  ];
   const mapMesh = useRef();
   const holderFontSize = 6;
+  const [enterHovered, setEnterHovered] = useState(false);
   const [commentFocused, setCommentFocused] = useState(false);
   const [commentHovered, setCommentHovered] = useState(false);
   let commentSplit = [];
   let currentComment = props.resources.commentFormState["content"];
   let splittable = currentComment;
   let count = 0;
-  console.log("CURRENT COMMENT LENGTH", currentComment.length);
   Loop1: while (splittable.length > 50) {
     let lastSpace = 0;
     count++;
@@ -39,12 +49,10 @@ const CommentBoardRight = (props) => {
       ? commentSplit
       : props.resources.commentFields[0].placeholder
     : "Login to leave a comment";
-  console.log("HOLDER TEXT", holderText);
   const holderTextLength =
     props.loginFormTools.loggedIn && commentFocused
       ? holderText.length
       : holderText.split(" ").length;
-  console.log("HOLDER TEXT LENGTH", holderTextLength);
   const holderRefs =
     props.loginFormTools.loggedIn && commentFocused
       ? holderText.map(() => createRef())
@@ -56,9 +64,6 @@ const CommentBoardRight = (props) => {
   );
 
   const deltas = new Array(holderTextLength).fill(-0.01);
-
-  console.log("COMMENT SPLIT", commentSplit);
-  console.log("HOLDER REFS", holderRefs);
 
   useFrame(() => {
     holderRefs.forEach((holder, index) => {
@@ -99,7 +104,11 @@ const CommentBoardRight = (props) => {
       <meshPhongMaterial
         attach="material"
         side={Three.DoubleSide}
-        color={"white"}
+        color={
+          props.resources.commentFormState["color"] == "white"
+            ? "black"
+            : "white"
+        }
       />
       <Box position={[18, 18, -1]} />
       {props.loginFormTools.loggedIn &&
@@ -129,39 +138,70 @@ const CommentBoardRight = (props) => {
         commentFocused &&
         commentSplit.map((comment, index) => {
           return (
-            <TextStandard
-              castShadow
-              key={index + 51}
-              font={props.resources.font}
-              size={1}
-              text={comment}
-              color={"black"}
-              position={[15, 15 - 1.3 * index, -3.5]}
-              thickness={0.2}
-              rotation-y={Math.PI}
-              reference={holderRefs[index]}
-            />
+            <>
+              <TextStandard
+                key={comment + index}
+                castShadow
+                key={index + 51}
+                font={props.resources.font}
+                size={0.8}
+                text={comment}
+                color={props.resources.commentFormState["color"]}
+                position={[15, 17 - 1 * index, -3.5]}
+                thickness={0.2}
+                rotation-y={Math.PI}
+                reference={holderRefs[index]}
+              />
+              {index == commentSplit.length - 1 && (
+                <TextButton
+                  key={"button"}
+                  onPointerEnter={(e) => setEnterHovered(true)}
+                  onPointerLeave={(e) => setEnterHovered(false)}
+                  onClick={(e) => props.submitComment()}
+                  font={props.resources.font}
+                  size={1}
+                  text={"Submit Comment"}
+                  position={[15, 15 - 1.3 * index - 2, -3.5]}
+                  color={
+                    enterHovered
+                      ? props.resources.commentFormState["color"] == "white"
+                        ? "hotpink"
+                        : "white"
+                      : props.resources.commentFormState["color"] != "white"
+                      ? "hotpink"
+                      : "black"
+                  }
+                  thickness={0.2}
+                  rotation-y={Math.PI}
+                  backDropX={3.8}
+                  backDropWidth={10}
+                  backDropHeight={3}
+                />
+              )}
+            </>
           );
         })}
       {!props.loginFormTools.loggedIn &&
         holderText.split(" ").map((word, index) => {
           return (
-            <TextStandard
-              castShadow
-              key={word}
-              font={props.resources.font}
-              size={holderFontSize}
-              text={word}
-              color={"hotpink"}
-              position={[
-                15,
-                9 - index * holderFontSize * 1.1,
-                -1.5 - 0.6 * displacements[index],
-              ]}
-              thickness={0.2}
-              rotation-y={Math.PI}
-              reference={holderRefs[index]}
-            />
+            <>
+              <TextStandard
+                castShadow
+                key={word}
+                font={props.resources.font}
+                size={holderFontSize}
+                text={word}
+                color={props.commentFormState["color"]}
+                position={[
+                  15,
+                  9 - index * holderFontSize * 1.1,
+                  -1.5 - 0.6 * displacements[index],
+                ]}
+                thickness={0.2}
+                rotation-y={Math.PI}
+                reference={holderRefs[index]}
+              />
+            </>
           );
         })}
     </mesh>
