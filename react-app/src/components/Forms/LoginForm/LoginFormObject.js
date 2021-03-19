@@ -7,20 +7,9 @@ import { logout } from "../../../store/session";
 const LoginFormObject = (props) => {
   const mesh = useRef();
 
-  const [loginFormMove, setLoginFormMove] = useState(0);
-  useFrame(() => {
-    if (mesh.current.position.z > -10) {
-      mesh.current.position.z -= loginFormMove;
-    }
-  });
-  const startMove = () => setLoginFormMove(0.05);
-
   const [enterHovered, setEnterHovered] = useState(false);
   const enterButtonEnter = (e) => setEnterHovered(true);
   const enterButtonLeave = (e) => setEnterHovered(false);
-  const enterButtonClick = (e) => {
-    startMove();
-  };
 
   const [logoutHovered, setLogoutHovered] = useState(false);
   const logoutButtonEnter = (e) => setLogoutHovered(true);

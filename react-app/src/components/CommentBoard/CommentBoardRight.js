@@ -36,9 +36,13 @@ const CommentBoardRight = (props) => {
     count++;
     let charTest = 0;
     Loop2: while (true) {
-      if (splittable[charTest] == " " && charTest > 49) break Loop2;
-      if (splittable[charTest]) charTest++;
-      if (!splittable[charTest]) {
+      if (splittable[charTest] == " ") lastSpace = charTest;
+      if (splittable[charTest] == " " && charTest > 50) {
+        break Loop2;
+      }
+      if (splittable[charTest]) {
+        charTest++;
+      } else if (!splittable[charTest]) {
         charTest = lastSpace;
         break Loop2;
       }
@@ -75,7 +79,7 @@ const CommentBoardRight = (props) => {
   useFrame(() => {
     holderRefs.forEach((holder, index) => {
       if (
-        (holder.current.position.z + deltas[index] <= -7.6 &&
+        (holder.current.position.z + deltas[index] <= -4 &&
           deltas[index] < 0) ||
         (holder.current.position.z + deltas[index] >= -1.5 && deltas[index] > 0)
       )
@@ -114,7 +118,9 @@ const CommentBoardRight = (props) => {
         attach="material"
         side={Three.DoubleSide}
         color={
-          props.resources.commentFormState["color"] == "white"
+          props.resources.commentFormState["color"] == "white" ||
+          props.resources.commentFormState["color"] == "yellow" ||
+          props.resources.commentFormState["color"] == "hotpink"
             ? "black"
             : "white"
         }
@@ -174,10 +180,18 @@ const CommentBoardRight = (props) => {
                     position={[15, 15 - 1.3 * index - 2, -3.5]}
                     color={
                       enterHovered
-                        ? props.resources.commentFormState["color"] == "white"
+                        ? props.resources.commentFormState["color"] ==
+                            "white" ||
+                          props.resources.commentFormState["color"] ==
+                            "yellow" ||
+                          props.resources.commentFormState["color"] == "hotpink"
                           ? "white"
                           : "black"
-                        : props.resources.commentFormState["color"] != "white"
+                        : props.resources.commentFormState["color"] !=
+                            "white" &&
+                          props.resources.commentFormState["color"] !=
+                            "yellow" &&
+                          props.resources.commentFormState["color"] != "hotpink"
                         ? "black"
                         : "hotpink"
                     }
@@ -240,7 +254,7 @@ const CommentBoardRight = (props) => {
                 font={props.resources.font}
                 size={holderFontSize}
                 text={word}
-                color={props.commentFormState["color"]}
+                color={props.resources.commentFormState["color"]}
                 position={[
                   15,
                   9 - index * holderFontSize * 1.1,
