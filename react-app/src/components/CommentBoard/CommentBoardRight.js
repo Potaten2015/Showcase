@@ -15,6 +15,13 @@ const CommentBoardRight = (props) => {
     "white",
     "hotpink",
   ];
+
+  const colorHoverObject = {};
+  colors.forEach((theColor) => {
+    colorHoverObject[theColor] = false;
+  });
+  const [colorHoverState, setColorHoverState] = useState(colorHoverObject);
+
   const mapMesh = useRef();
   const holderFontSize = 6;
   const [enterHovered, setEnterHovered] = useState(false);
@@ -29,7 +36,7 @@ const CommentBoardRight = (props) => {
     count++;
     let charTest = 0;
     Loop2: while (true) {
-      if (splittable[charTest] == " ") break Loop2;
+      if (splittable[charTest] == " " && charTest > 49) break Loop2;
       if (splittable[charTest]) charTest++;
       if (!splittable[charTest]) {
         charTest = lastSpace;
@@ -76,6 +83,8 @@ const CommentBoardRight = (props) => {
       holder.current.position.z += deltas[index];
     });
   });
+
+  console.log(props.resources.commentFormState["content"].length);
 
   return (
     <mesh
@@ -153,30 +162,70 @@ const CommentBoardRight = (props) => {
                 reference={holderRefs[index]}
               />
               {index == commentSplit.length - 1 && (
-                <TextButton
-                  key={"button"}
-                  onPointerEnter={(e) => setEnterHovered(true)}
-                  onPointerLeave={(e) => setEnterHovered(false)}
-                  onClick={(e) => props.submitComment()}
-                  font={props.resources.font}
-                  size={1}
-                  text={"Submit Comment"}
-                  position={[15, 15 - 1.3 * index - 2, -3.5]}
-                  color={
-                    enterHovered
-                      ? props.resources.commentFormState["color"] == "white"
-                        ? "hotpink"
-                        : "white"
-                      : props.resources.commentFormState["color"] != "white"
-                      ? "hotpink"
-                      : "black"
-                  }
-                  thickness={0.2}
-                  rotation-y={Math.PI}
-                  backDropX={3.8}
-                  backDropWidth={10}
-                  backDropHeight={3}
-                />
+                <>
+                  <TextButton
+                    key={"button"}
+                    onPointerEnter={(e) => setEnterHovered(true)}
+                    onPointerLeave={(e) => setEnterHovered(false)}
+                    onClick={(e) => props.submitComment()}
+                    font={props.resources.font}
+                    size={1}
+                    text={"Submit Comment"}
+                    position={[15, 15 - 1.3 * index - 2, -3.5]}
+                    color={
+                      enterHovered
+                        ? props.resources.commentFormState["color"] == "white"
+                          ? "white"
+                          : "black"
+                        : props.resources.commentFormState["color"] != "white"
+                        ? "black"
+                        : "hotpink"
+                    }
+                    thickness={0.2}
+                    rotation-y={Math.PI}
+                    backDropX={3.8}
+                    backDropWidth={10}
+                    backDropHeight={2}
+                  />
+                  {colors.map((theColor, index) => {
+                    return (
+                      <TextButton
+                        key={theColor}
+                        onPointerEnter={(e) =>
+                          setColorHoverState((prev) => {
+                            const newState = Object.assign({}, prev);
+                            newState[theColor] = true;
+                            return newState;
+                          })
+                        }
+                        onPointerLeave={(e) =>
+                          setColorHoverState((prev) => {
+                            const newState = Object.assign({}, prev);
+                            newState[theColor] = false;
+                            return newState;
+                          })
+                        }
+                        onClick={(e) =>
+                          props.resources.setCommentFormState((prev) => {
+                            const newState = Object.assign({}, prev);
+                            newState["color"] = theColor;
+                            return newState;
+                          })
+                        }
+                        font={props.resources.font}
+                        size={1}
+                        text={theColor.toUpperCase()}
+                        position={[-5, 6 - 2 * index - 2, -3.5]}
+                        color={colorHoverState[theColor] ? "white" : theColor}
+                        thickness={0.2}
+                        rotation-y={Math.PI}
+                        backDropX={2}
+                        backDropWidth={8}
+                        backDropHeight={1.8}
+                      />
+                    );
+                  })}
+                </>
               )}
             </>
           );

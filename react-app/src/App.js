@@ -199,7 +199,7 @@ const App = () => {
             {commentFields.map((field) => {
               return (
                 <input
-                  maxLength={255}
+                  maxLength={144}
                   autoComplete="off"
                   className="hidden"
                   id={"comment" + field.fieldName}
