@@ -173,7 +173,7 @@ const CommentBoardRight = (props) => {
                     key={"button"}
                     onPointerEnter={(e) => setEnterHovered(true)}
                     onPointerLeave={(e) => setEnterHovered(false)}
-                    onClick={(e) => props.submitComment()}
+                    onClick={(e) => props.resources.submitComment()}
                     font={props.resources.font}
                     size={1}
                     text={"Submit Comment"}

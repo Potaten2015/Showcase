@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from app.models import User, Comment, Geo, db
 from sqlalchemy.orm import joinedload
 from app.forms import CommentForm
@@ -17,7 +17,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 @resource_routes.route('')
 def resources():
-    comments = db.session.query(Comment).options(joinedload(Comment.user).joinedload(User.geo)).order_by(Comment.time_created).limit(10).all()
+    comments = db.session.query(Comment).options(joinedload(Comment.user).joinedload(User.geo)).order_by(Comment.time_created.desc()).limit(10).all()
 
     geos = db.session.query(Geo).options(joinedload(Geo.user)).all()
 
@@ -47,7 +47,7 @@ def new_comment():
         db.session.commit()
         db.session.flush()
 
-        comments = db.session.query(Comment).options(joinedload(Comment.user).joinedload(User.geo)).order_by(Comment.time_created).limit(10).all()
+        comments = db.session.query(Comment).options(joinedload(Comment.user).joinedload(User.geo)).order_by(Comment.time_created.desc()).limit(10).all()
 
         geos = db.session.query(Geo).options(joinedload(Geo.user)).all()
 
@@ -63,6 +63,6 @@ def new_comment():
             newGeo = geo.to_dict()
             newGeo["user"] = geo.user.to_dict()
             edited["geos"].append(newGeo)
-
+        print("THE EDITED STUFF THAT NEEDS TO BE PUT INTO THE STORE", edited)
         return edited
     return {'errors': validation_errors_to_error_messages(form.errors)}

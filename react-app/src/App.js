@@ -73,7 +73,7 @@ const App = () => {
   };
 
   const submitCommentFunction = async (e) => {
-    dispatch(submitComment(commentFormState));
+    dispatch(submitComment({ ...commentFormState, user_id: user.id }));
   };
 
   // Form State Holders

@@ -87,15 +87,19 @@ export const saveLocation = (location) => async (dispatch) => {
   return saveLocation;
 };
 
-export const submitComment = ({ content, color }) => async (dispatch) => {
+export const submitComment = ({ content, color, user_id }) => async (
+  dispatch,
+) => {
   const formData = new FormData();
   formData.append("content", content);
   formData.append("color", color);
+  formData.append("user_id", user_id);
   const resources = await fetch("/api/resources/comment", {
     method: "POST",
     body: formData,
   });
   const res = await resources.json();
+  console.log(res);
   dispatch(get_resources(res));
 };
 

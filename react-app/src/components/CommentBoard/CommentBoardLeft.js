@@ -15,6 +15,7 @@ const CommentBoardLeft = (props) => {
   const scrollingMesh2 = useRef();
 
   const commentSplit = [];
+  const colorSplit = [];
 
   props.resources.comments &&
     props.resources.comments.forEach((comment, index1) => {
@@ -27,10 +28,18 @@ const CommentBoardLeft = (props) => {
           charTest++;
         }
         commentSplit.push(currentComment.slice(0, charTest));
+        colorSplit.push(comment.color);
         currentComment = currentComment.slice(charTest + 1);
       }
+      colorSplit.push(comment.color);
       commentSplit.push(`${currentComment} - @${comment.user.username}`);
+      colorSplit.push(comment.color);
       commentSplit.push(" ");
+      while (count < 4) {
+        colorSplit.push(comment.color);
+        commentSplit.push(" ");
+        count++;
+      }
     });
 
   // const commentSpotlight1 = useRef();
@@ -96,7 +105,7 @@ const CommentBoardLeft = (props) => {
               font={props.resources.font}
               size={commentFontSize}
               text={comment}
-              color={comment.color}
+              color={colorSplit[index]}
               position={[18, 96 - 1.3 * index, 3.5]}
               thickness={commentThickness}
               rotation-y={Math.PI}
@@ -113,7 +122,7 @@ const CommentBoardLeft = (props) => {
               font={props.resources.font}
               size={commentFontSize}
               text={comment}
-              color={comment.color}
+              color={colorSplit[index]}
               position={[18, 18 - 1.3 * index, 3.5]}
               thickness={commentThickness}
               rotation-y={Math.PI}
