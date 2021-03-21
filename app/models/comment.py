@@ -6,7 +6,7 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"),nullable=False )
-    content = db.Column(db.String(144), nullable=False)
+    content = db.Column(db.String(255), nullable=False)
     color = db.Column(db.String(20), nullable=False)
     time_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 

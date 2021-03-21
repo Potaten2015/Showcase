@@ -79,7 +79,6 @@ export const signup = ({
   if (!user.errors) {
     dispatch(setUser(user));
   }
-  console.log("SIGNUP RESPONSE -----", user);
   return user;
 };
 

@@ -27,81 +27,81 @@ const BioWall = (props) => {
         side={Three.DoubleSide}
         color={"white"}
       />
-      <PictureHolder position={[7, 11, -2.1]} />
+      <PictureHolder position={[8, 11, -2.1]} />
       <SpinningIcon
         url={HtmlIcon}
-        shape-position={[-7.7, 13.6, -6]}
+        shape-position={[-8.7, 13.6, -3.2]}
         scale={[0.06, 0.06, 0.06]}
         limit={-0.2}
         moving={true}
       />
       <SpinningIcon
         url={JsIcon}
-        shape-position={[2.2, 19, -6]}
+        shape-position={[1.2, 19, -3.2]}
         scale={[0.01, 0.01, 0.01]}
         groupMoving={true}
       />
       <SpinningIcon
         url={GithubIcon}
-        shape-position={[-4, 17, -6]}
+        shape-position={[-8.8, 1.2, -3.2]}
         scale={[0.005, 0.005, 0.005]}
         moving={true}
       />
       <SpinningIcon
         url={JavaIcon}
-        shape-position={[-8, 17, -6]}
+        shape-position={[-9, 17, -3.2]}
         scale={[0.12, 0.12, 0.1]}
         moving={true}
       />
       <SpinningIcon
         url={PythonIcon}
-        shape-position={[0.4, 13, -6]}
+        shape-position={[-0.6, 13, -3.2]}
         scale={[0.1, 0.1, 0.1]}
         groupMoving={true}
       />
       <SpinningIcon
         url={VsIcon}
-        shape-position={[-4.2, 13, -6]}
+        shape-position={[-5.2, 13, -3.2]}
         scale={[0.002, 0.002, 0.002]}
         moving={true}
       />
       <SpinningIcon
         url={EclipseIcon}
-        shape-position={[1, 9.5, -6]}
+        shape-position={[0, 9.5, -3.2]}
         scale={[0.07, 0.07, 0.07]}
         moving={true}
       />
       <SpinningIcon
         url={CssIcon}
-        shape-position={[-3.5, 9.3, -6]}
+        shape-position={[-4.5, 9.3, -3.2]}
         scale={[0.006, 0.006, 0.006]}
         limit={-0.0001}
         groupMoving={true}
       />
       <SpinningIcon
         url={ExpressIcon}
-        shape-position={[1.2, 6, -6]}
+        shape-position={[0.2, 6, -3.2]}
         scale={[0.07, 0.07, 0.07]}
         limit={-0.0001}
         moving={true}
       />
       <SpinningIcon
         url={PostgresIcon}
-        shape-position={[-7.3, 9.4, -6]}
+        shape-position={[-8.3, 9.4, -3.2]}
         scale={[0.07, 0.07, 0.07]}
         limit={-0.0001}
         groupMoving={true}
       />
       <SpinningIcon
         url={MatlabIcon}
-        shape-position={[-7.8, 5.2, -6]}
+        shape-position={[-8.8, 5.2, -3.2]}
         scale={[0.07, 0.07, 0.07]}
         limit={-0.0001}
         moving={true}
       />
       <SpinningIcon
         url={SequelizeIcon}
-        shape-position={[-7.8, 1.2, -6]}
+        shape-position={[-5, 17, -3.2]}
         scale={[0.02, 0.02, 0.02]}
         limit={-0.0001}
         groupMoving={true}

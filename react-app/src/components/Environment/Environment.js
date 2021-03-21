@@ -23,7 +23,6 @@ import { BioWall } from "../LoginWall/BioWall";
 const Environment = (props) => {
   const keyPressed = {};
   document.addEventListener("keydown", (e) => {
-    console.log(e.key);
     if (!keyPressed[e.key]) keyPressed[e.key] = e.key;
   });
   document.addEventListener("keyup", (e) => {

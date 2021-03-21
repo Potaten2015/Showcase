@@ -88,7 +88,6 @@ const App = () => {
   const starterComment = {};
   commentFields.forEach((field) => {
     starterComment[field.fieldName] = "";
-    console.log(field);
   });
   starterComment["color"] = "white";
 
@@ -124,7 +123,6 @@ const App = () => {
                       starterSignup["city"] = saveLocation.city;
                     if (saveLocation && saveLocation.state)
                       starterSignup["state"] = saveLocation.state;
-                    console.log("GOT saveLocation", saveLocation);
                   }
                 },
               ),
@@ -199,7 +197,7 @@ const App = () => {
             {commentFields.map((field) => {
               return (
                 <input
-                  maxLength={144}
+                  maxLength={255}
                   autoComplete="off"
                   className="hidden"
                   id={"comment" + field.fieldName}
@@ -220,6 +218,7 @@ const App = () => {
             })}
           </form>
           <Canvas
+            // onPointerMove={(e) => console.log(e)}
             shadowMap
             shadow-mapsize-width={100}
             shadow-mapsize-height={100}

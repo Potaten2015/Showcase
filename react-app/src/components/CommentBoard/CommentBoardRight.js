@@ -88,8 +88,6 @@ const CommentBoardRight = (props) => {
     });
   });
 
-  console.log(props.resources.commentFormState["content"].length);
-
   return (
     <mesh
       {...props}

@@ -6,7 +6,6 @@ import resume2 from "../../resources/Resume_2021_03_07-2.jpg";
 import { TrackballControls } from "@react-three/drei";
 
 const ResumeRightWall = (props) => {
-  console.log(resume2);
   const texture2 = useLoader(Three.TextureLoader, resume2);
   return (
     <mesh {...props} castShadow>

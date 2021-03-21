@@ -59,26 +59,6 @@ const SpinningIcon = (props) => {
 
   useEffect(() => void svgResource.then(set), []);
 
-  useFrame(() => {
-    groupRef.current.geometry.center();
-    displacement += delta;
-    groupDisplacement += groupDelta;
-    if (
-      (groupDisplacement > 0.4 && groupDelta > 0) ||
-      (groupDisplacement < -0.4 && groupDelta < 0)
-    )
-      groupDelta *= -1;
-    groupRef.current.position.z += groupDelta;
-    elementsRef.forEach((element, index) => {
-      if (
-        (displacement > 0.1 && delta > 0) ||
-        (displacement < -0.1 && delta < 0)
-      )
-        delta *= -1;
-      element.current.position.z += delta * (index + 5);
-    });
-  });
-
   return (
     <>
       <object3D

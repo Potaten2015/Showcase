@@ -99,7 +99,6 @@ export const submitComment = ({ content, color, user_id }) => async (
     body: formData,
   });
   const res = await resources.json();
-  console.log(res);
   dispatch(get_resources(res));
 };
 

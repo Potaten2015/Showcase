@@ -44,7 +44,6 @@ const WorldMap = (props) => {
       </mesh>
       <Box position={[50, 25, 2]} />
       {props.resources.geos.map((geo) => {
-        console.log(geo);
         return (
           <Pin
             key={`${geo.id}`}
