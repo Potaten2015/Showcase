@@ -149,6 +149,7 @@ const CommentBoardRight = (props) => {
         commentSplit.map((comment, index) => {
           return (
             <>
+              key={comment}
               <TextStandard
                 key={comment + index}
                 castShadow
