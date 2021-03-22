@@ -12,6 +12,7 @@ const SpinningIcon = (props) => {
 
   const [shapes, set] = useState([]);
   const loader = new SVGLoader();
+  const [hovered, setHovered] = useState(false);
 
   const svgResource = new Promise((resolve) =>
     loader.load(props.url, (shapes) => {
@@ -42,20 +43,13 @@ const SpinningIcon = (props) => {
         ref={reference}>
         <meshPhongMaterial
           attach="material"
-          color={color}
+          color={hovered ? "hotpink" : "black"}
           side={Three.DoubleSide}
         />
         <shapeBufferGeometry attach="geometry" args={[shape]} />
       </mesh>
     );
   };
-
-  let delta = props.moving ? -0.001 : 0;
-  let groupDelta = props.groupMoving ? -0.003 : 0;
-  let displacement = 0;
-  let groupDisplacement = 0;
-  let currentRotation = 0.01;
-  let mySwitch = false;
 
   useEffect(() => void svgResource.then(set), []);
 
@@ -64,7 +58,26 @@ const SpinningIcon = (props) => {
       <object3D
         position={props["shape-position"]}
         rotation={[Math.PI, Math.PI, Math.PI]}>
-        <mesh position={[0, 0, 0]} ref={groupRef}>
+        <mesh
+          position={[0, 0, 0]}
+          ref={groupRef}
+          onPointerEnter={
+            props.hoverable
+              ? (e) => {
+                  setHovered(true);
+                }
+              : null
+          }
+          onPointerLeave={
+            props.hoverable
+              ? (e) => {
+                  setHovered(false);
+                }
+              : null
+          }
+          onClick={
+            props.hoverable ? (e) => window.open(props.link, "_blank") : null
+          }>
           {shapes.map((item, index) => (
             <Shape
               key={item.shape.uuid}
@@ -72,6 +85,21 @@ const SpinningIcon = (props) => {
               reference={elementsRef[index]}
             />
           ))}
+          {props.hoverable && (
+            <mesh
+              castShadow
+              receiveShadow
+              onClick={props.onClick}
+              position={[-1.25, -1.25, 0]}>
+              <boxBufferGeometry attach="geometry" args={[2.5, 2.5, -0.01]} />
+              <meshPhongMaterial
+                attach="material"
+                transparent={true}
+                opacity={props.opacity ? props.opacity : 0.3}
+                color={props.backColor ? props.backColor : "white"}
+              />
+            </mesh>
+          )}
         </mesh>
       </object3D>
     </>

@@ -36,18 +36,6 @@ const LoginFormObject = (props) => {
       <mesh scale={[4, 4, 4]} {...props} receiveShadow castShadow ref={mesh}>
         <boxBufferGeometry attach="geometry" args={[7, 10, 1]} />
         <meshPhongMaterial attach="material" color={"black"} />
-        {/* <directionalLight
-          castShadow
-          position={[10, 10, 5]}
-          intensity={0.4}
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-          shadow-camera-far={50}
-          shadow-camera-left={-20}
-          shadow-camera-right={20}
-          shadow-camera-top={20}
-          shadow-camera-bottom={-20}
-        /> */}
         <TextStandard
           font={props.font}
           size={textFontSize}

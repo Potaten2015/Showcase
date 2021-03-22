@@ -16,7 +16,7 @@ const WorldMap = (props) => {
 
   return (
     <mesh {...props} receiveShadow castShadow ref={mapMesh}>
-      <planeGeometry attach="geometry" args={[100, 50, 400, 200]} />
+      <planeGeometry attach="geometry" args={[100, 50, 200, 100]} />
       <meshPhongMaterial
         attach="material"
         // side={Three.DoubleSide}
@@ -30,7 +30,7 @@ const WorldMap = (props) => {
         wireframe={true}
       />
       <mesh>
-        <planeGeometry attach="geometry" args={[100, 50, 400, 200]} />
+        <planeGeometry attach="geometry" args={[100, 50]} />
         <meshPhongMaterial
           attach="material"
           // side={Three.DoubleSide}

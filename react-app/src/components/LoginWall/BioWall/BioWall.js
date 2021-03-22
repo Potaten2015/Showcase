@@ -17,6 +17,8 @@ import PostgresIcon from "../../../resources/Icon/icons8-postgresql.svg";
 import SolidworksIcon from "../../../resources/Icon/solidworks.svg";
 import MatlabIcon from "../../../resources/Icon/matlab-seeklogo.com.svg";
 import SequelizeIcon from "../../../resources/Icon/10223313071580802969.svg";
+import LinkedInIcon from "../../../resources/Icon/iconfinder_Rounded_Linkedin2_svg_5282542.svg";
+import AngelIcon from "../../../resources/Icon/angel-icon.svg";
 
 const BioWall = (props) => {
   return (
@@ -27,7 +29,7 @@ const BioWall = (props) => {
         side={Three.DoubleSide}
         color={"white"}
       />
-      <PictureHolder position={[8, 11, -2.1]} />
+      <PictureHolder position={[7, 11, -2.1]} />
       <SpinningIcon
         url={HtmlIcon}
         shape-position={[-8.7, 13.6, -3.2]}
@@ -40,12 +42,6 @@ const BioWall = (props) => {
         shape-position={[1.2, 19, -3.2]}
         scale={[0.01, 0.01, 0.01]}
         groupMoving={true}
-      />
-      <SpinningIcon
-        url={GithubIcon}
-        shape-position={[-8.8, 1.2, -3.2]}
-        scale={[0.005, 0.005, 0.005]}
-        moving={true}
       />
       <SpinningIcon
         url={JavaIcon}
@@ -105,6 +101,30 @@ const BioWall = (props) => {
         scale={[0.02, 0.02, 0.02]}
         limit={-0.0001}
         groupMoving={true}
+      />
+      <SpinningIcon
+        url={GithubIcon}
+        shape-position={[6, -13, -3.2]}
+        scale={[0.005, 0.005, 0.005]}
+        moving={true}
+        hoverable={true}
+        link={"https://github.com/Potaten2015"}
+      />
+      <SpinningIcon
+        url={LinkedInIcon}
+        shape-position={[0, -13, -3.2]}
+        scale={[0.005, 0.005, 0.05]}
+        moving={true}
+        hoverable={true}
+        link={"https://www.linkedin.com/in/taten-knight/"}
+      />
+      <SpinningIcon
+        url={AngelIcon}
+        shape-position={[-6, -13, -3.2]}
+        scale={[0.04, 0.04, 0.05]}
+        moving={true}
+        hoverable={true}
+        link={"https://angel.co/u/taten-hall-knight"}
       />
     </mesh>
   );
