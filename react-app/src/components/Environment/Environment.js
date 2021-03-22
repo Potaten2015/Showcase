@@ -36,39 +36,43 @@ const Environment = (props) => {
   // const persCam2 = useRef();
   // const persCam3 = useRef();
   // const persCam4 = useRef();
-  const look1 = useRef();
-  const look2 = useRef();
-  const look3 = useRef();
-  const look4 = useRef();
-  const outerSpotlight = useRef();
-  const innerSpotlight = useRef();
-  const persTarget = useRef();
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  let moveX = 0;
-  let justMoved = false;
 
-  const { gl } = useThree();
+  const midWidth = Math.floor(window.innerWidth / 2);
+  const midHeight = Math.floor(window.innerHeight / 2);
+  let xPercent = 0;
+  let yPercent = 0;
 
   // useHelper(persCam, Three.CameraHelper, 1, "blue");
   // useHelper(topCam, Three.CameraHelper, 1, "blue");
 
+  document.addEventListener("mousemove", (e) => {
+    xPercent = (e.clientX - midWidth) / midWidth;
+    yPercent = (e.clientY - midHeight) / midHeight;
+  });
+
+  document.addEventListener("mouseleave", (e) => {
+    xPercent = 0;
+    yPercent = 0;
+  });
+
   useFrame(() => {
+    if (xPercent > 0.3) mainCamObject.current.rotation.z -= 0.01;
+    if (xPercent < -0.3) mainCamObject.current.rotation.z += 0.01;
+    if (yPercent > 0.3) persCam.current.rotation.x += 0.01;
+    if (yPercent < -0.3) persCam.current.rotation.x -= 0.01;
     if (keyPressed["ArrowLeft"]) mainCamObject.current.rotation.z += 0.01;
     if (keyPressed["ArrowRight"]) mainCamObject.current.rotation.z -= 0.01;
-    if (keyPressed["ArrowUp"]) persCam.current.rotation.x += 0.01;
-    if (keyPressed["ArrowDown"]) persCam.current.rotation.x -= 0.01;
+    if (keyPressed["ArrowDown"]) persCam.current.rotation.x += 0.01;
+    if (keyPressed["ArrowUp"]) persCam.current.rotation.x -= 0.01;
     if (keyPressed["Shift"]) mainCamObject.current.position.z += 0.1;
     if (keyPressed["Control"]) mainCamObject.current.position.z -= 0.1;
-    if (keyPressed["w"]) mainCamObject.current.position.y += 0.1;
-    if (keyPressed["s"]) mainCamObject.current.position.y -= 0.1;
-    if (keyPressed["d"]) mainCamObject.current.position.x += 0.1;
-    if (keyPressed["a"]) mainCamObject.current.position.x -= 0.1;
+    if (keyPressed["s"]) persCam.current.position.y += 0.1;
+    if (keyPressed["w"]) persCam.current.position.y -= 0.1;
+    if (keyPressed["a"]) persCam.current.position.x += 0.1;
+    if (keyPressed["d"]) persCam.current.position.x -= 0.1;
   });
   return (
     <>
-      {/* LIGHTING */}
-      {/* <ambientLight intensity={0.1} /> */}
       <pointLight args={["white", 0.1]} position={[40, 40, 40]} />
       <pointLight args={["white", 0.1]} position={[-40, -40, 40]} />
       <pointLight args={["white", 0.1]} position={[-40, 40, 40]} />
@@ -99,9 +103,8 @@ const Environment = (props) => {
           position={[0, 0, 25]}
           rotation-x={Math.PI / 2}
           rotation-y={Math.PI}
-          makeDefault>
-          <object3D ref={persTarget} position={[0, 0, -10]} />
-        </PerspectiveCamera>
+          makeDefault
+        />
       </object3D>
 
       <mesh ref={mesh} receiveShadow position={[0, 0, 0]}>
@@ -116,7 +119,7 @@ const Environment = (props) => {
           rotation-y={Math.PI}
           position={[20, -45, 25]}
         />
-        {/* <Suspense fallback={<Box position={[0, 0, 0]} />}>
+        <Suspense fallback={<Box position={[0, 0, 0]} />}>
           <WorldMap
             resources={props.resources}
             loginFormTools={props.loginFormTools}
@@ -124,7 +127,7 @@ const Environment = (props) => {
             rotation-x={Math.PI / 2}
             position={[0, 50, 25]}
           />
-        </Suspense> */}
+        </Suspense>
         <Ceiling position={[0, 0, 50]} />
         <Suspense fallback={<Box position={[0, 0, 0]} />}>
           <ResumeWall
@@ -141,9 +144,6 @@ const Environment = (props) => {
           rotation-y={Math.PI / 2}
           position={[50, 0, 25]}
         />
-        <mesh position={[0, 5, 50]}>
-          <object3D ref={persTarget} position={[0, 0, -10]} />
-        </mesh>
         <planeBufferGeometry args={[100, 100]} />
         <shaderMaterial attach="material" opacity={0.3} />
         <meshPhongMaterial

@@ -30,21 +30,19 @@ const CommentBoardRight = (props) => {
   let commentSplit = [];
   let currentComment = props.resources.commentFormState["content"];
   let splittable = currentComment;
-  let count = 0;
-  Loop1: while (splittable.length > 50) {
+  while (splittable.length > 50) {
     let lastSpace = 0;
-    count++;
     let charTest = 0;
-    Loop2: while (true) {
+    Loop: while (true) {
       if (splittable[charTest] == " ") lastSpace = charTest;
       if (splittable[charTest] == " " && charTest > 50) {
-        break Loop2;
+        break Loop;
       }
       if (splittable[charTest]) {
         charTest++;
       } else if (!splittable[charTest]) {
         charTest = lastSpace;
-        break Loop2;
+        break Loop;
       }
     }
     commentSplit.push(splittable.slice(0, charTest));
@@ -123,7 +121,6 @@ const CommentBoardRight = (props) => {
             : "white"
         }
       />
-      <Box position={[18, 18, -1]} />
       {props.loginFormTools.loggedIn &&
         !commentFocused &&
         props.resources.commentFields[0].placeholder

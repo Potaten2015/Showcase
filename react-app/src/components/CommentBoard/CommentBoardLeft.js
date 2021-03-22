@@ -63,7 +63,7 @@ const CommentBoardLeft = (props) => {
   });
 
   return (
-    <mesh {...props} castShadow>
+    <object3D {...props} castShadow>
       <mesh castShadow position={[0, 22, 4]}>
         <boxBufferGeometry
           attach="geometry"
@@ -97,7 +97,7 @@ const CommentBoardLeft = (props) => {
           color={"black"}
         />
       </mesh>
-      <mesh castShadow ref={scrollingMesh1}>
+      <object3D castShadow ref={scrollingMesh1}>
         {commentSplit.map((comment, index) => {
           return (
             <TextStandard
@@ -112,8 +112,8 @@ const CommentBoardLeft = (props) => {
             />
           );
         })}
-      </mesh>
-      <mesh castShadow ref={scrollingMesh2}>
+      </object3D>
+      <object3D castShadow ref={scrollingMesh2}>
         {commentSplit.map((comment, index) => {
           return (
             <TextStandard
@@ -129,8 +129,8 @@ const CommentBoardLeft = (props) => {
             />
           );
         })}
-      </mesh>
-    </mesh>
+      </object3D>
+    </object3D>
   );
 };
 
