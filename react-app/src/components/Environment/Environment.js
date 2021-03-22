@@ -116,7 +116,7 @@ const Environment = (props) => {
           rotation-y={Math.PI}
           position={[20, -45, 25]}
         />
-        <Suspense fallback={<Box position={[0, 0, 0]} />}>
+        {/* <Suspense fallback={<Box position={[0, 0, 0]} />}>
           <WorldMap
             resources={props.resources}
             loginFormTools={props.loginFormTools}
@@ -124,7 +124,7 @@ const Environment = (props) => {
             rotation-x={Math.PI / 2}
             position={[0, 50, 25]}
           />
-        </Suspense>
+        </Suspense> */}
         <Ceiling position={[0, 0, 50]} />
         <Suspense fallback={<Box position={[0, 0, 0]} />}>
           <ResumeWall
