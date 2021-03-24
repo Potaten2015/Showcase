@@ -72,7 +72,7 @@ const CommentBoardRight = (props) => {
     },
   );
 
-  const deltas = new Array(holderTextLength).fill(-0.01);
+  const deltas = new Array(holderTextLength).fill(-0.1);
 
   useFrame(() => {
     holderRefs.forEach((holder, index) => {

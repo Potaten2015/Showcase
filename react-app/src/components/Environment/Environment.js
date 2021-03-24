@@ -56,12 +56,11 @@ const Environment = (props) => {
   });
 
   useFrame(() => {
-    if (xPercent > 0.3)
-      mainCamObject.current.rotation.z -= 0.02 * xPercent ** 2;
+    if (xPercent > 0.3) mainCamObject.current.rotation.z -= 0.1 * xPercent ** 2;
     if (xPercent < -0.3)
-      mainCamObject.current.rotation.z += 0.02 * xPercent ** 2;
-    if (yPercent > 0.3) persCam.current.rotation.x += 0.02 * yPercent ** 2;
-    if (yPercent < -0.3) persCam.current.rotation.x -= 0.02 * yPercent ** 2;
+      mainCamObject.current.rotation.z += 0.1 * xPercent ** 2;
+    if (yPercent > 0.3) persCam.current.rotation.x += 0.1 * yPercent ** 2;
+    if (yPercent < -0.3) persCam.current.rotation.x -= 0.1 * yPercent ** 2;
     if (keyPressed["ArrowLeft"]) mainCamObject.current.rotation.z += 0.01;
     if (keyPressed["ArrowRight"]) mainCamObject.current.rotation.z -= 0.01;
     if (keyPressed["ArrowDown"]) persCam.current.rotation.x += 0.01;

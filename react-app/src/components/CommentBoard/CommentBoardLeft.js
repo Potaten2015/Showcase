@@ -50,15 +50,15 @@ const CommentBoardLeft = (props) => {
   useFrame(() => {
     if (scrollingMesh1.current.position.y <= -62.4) {
       scrollingMesh1.current.position.y = 15.5;
-      scrollingMesh1.current.position.y -= 0.01;
+      scrollingMesh1.current.position.y -= 0.1;
     } else {
-      scrollingMesh1.current.position.y -= 0.01;
+      scrollingMesh1.current.position.y -= 0.1;
     }
     if (scrollingMesh2.current.position.y <= -62.4) {
       scrollingMesh2.current.position.y = 15.5;
-      scrollingMesh2.current.position.y -= 0.01;
+      scrollingMesh2.current.position.y -= 0.1;
     } else {
-      scrollingMesh2.current.position.y -= 0.01;
+      scrollingMesh2.current.position.y -= 0.1;
     }
   });
 

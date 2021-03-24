@@ -29,6 +29,7 @@ import {
   SignupFormFields,
 } from "./components/Forms/LoginForm";
 import { commentFields } from "./components/CommentBoard";
+import { FrameLimiter } from "./components/FrameLimiter";
 
 const App = () => {
   // REF VARIABLES
@@ -228,6 +229,7 @@ const App = () => {
             shadow-camera-top={10}
             shadow-camera-bottom={-10}>
             <fog attach="fog" args={["hotpink", 45, 100]} />
+            <FrameLimiter fps={15} />
             <Environment
               authenticated={authenticated}
               loginFormTools={{
