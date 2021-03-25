@@ -33,17 +33,11 @@ const Environment = (props) => {
   const topCam = useRef();
   const mainCamObject = useRef();
   const topCamObject = useRef();
-  // const persCam2 = useRef();
-  // const persCam3 = useRef();
-  // const persCam4 = useRef();
 
   const midWidth = Math.floor(window.innerWidth / 2);
   const midHeight = Math.floor(window.innerHeight / 2);
   let xPercent = 0;
   let yPercent = 0;
-
-  // useHelper(persCam, Three.CameraHelper, 1, "blue");
-  // useHelper(topCam, Three.CameraHelper, 1, "blue");
 
   document.addEventListener("mousemove", (e) => {
     xPercent = (e.clientX - midWidth) / midWidth;
@@ -67,10 +61,10 @@ const Environment = (props) => {
     if (keyPressed["ArrowUp"]) persCam.current.rotation.x -= 0.01;
     if (keyPressed["Shift"]) mainCamObject.current.position.z += 0.1;
     if (keyPressed["Control"]) mainCamObject.current.position.z -= 0.1;
-    if (keyPressed["s"]) persCam.current.position.y += 0.1;
-    if (keyPressed["w"]) persCam.current.position.y -= 0.1;
-    if (keyPressed["a"]) persCam.current.position.x += 0.1;
-    if (keyPressed["d"]) persCam.current.position.x -= 0.1;
+    if (keyPressed["s"]) persCam.current.position.y += 1;
+    if (keyPressed["w"]) persCam.current.position.y -= 1;
+    if (keyPressed["a"]) persCam.current.position.x += 1;
+    if (keyPressed["d"]) persCam.current.position.x -= 1;
   });
   return (
     <>
@@ -135,6 +129,7 @@ const Environment = (props) => {
             rotation-x={Math.PI / 2}
             rotation-y={Math.PI / 2}
             position={[-50, 0, 25]}
+            resources={props.resources}
           />
         </Suspense>
         <CommentBoard

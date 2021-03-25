@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useFrame } from "react-three-fiber";
+import { applyProps, useFrame } from "react-three-fiber";
 import { Box } from "../Shapes";
 import * as Three from "../../../node_modules/three/build/three";
 import ResumeLeftWall from "./ResumeWallLeft";
@@ -15,8 +15,8 @@ const ResumeWall = (props) => {
           side={Three.DoubleSide}
           color={"black"}
         />
-        <ResumeLeftWall position={[-20, 0, 1]} />
-        <ResumeRightWall position={[20, 0, 1]} />
+        <ResumeLeftWall position={[-20, 0, 1]} resources={props.resources} />
+        <ResumeRightWall position={[20, 0, 1]} resources={props.resources} />
       </mesh>
     </>
   );

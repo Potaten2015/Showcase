@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { useFrame, useLoader } from "react-three-fiber";
 import { Box } from "../Shapes";
 import * as Three from "../../../node_modules/three/build/three";
-import resume2 from "../../resources/Resume_2021_03_07-2.jpg";
-import { TrackballControls } from "@react-three/drei";
+import resume2 from "../../resources/Resume2.jpg";
+import ResumeDownloader from "./ResumeDownloader";
 
 const ResumeRightWall = (props) => {
   const texture2 = useLoader(Three.TextureLoader, resume2);
@@ -15,6 +15,10 @@ const ResumeRightWall = (props) => {
         side={Three.DoubleSide}
         color={"white"}
         map={texture2}
+      />
+      <ResumeDownloader
+        position={[0, -22.5, 0.1]}
+        font={props.resources.font}
       />
     </mesh>
   );

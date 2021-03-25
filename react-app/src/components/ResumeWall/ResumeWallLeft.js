@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { useFrame, useLoader } from "react-three-fiber";
+import { applyProps, useFrame, useLoader } from "react-three-fiber";
 import { Box } from "../Shapes";
 import * as Three from "../../../node_modules/three/build/three";
-import resume1 from "../../resources/Resume_2021_03_07-1.jpg";
-import resume2 from "../../resources/Resume_2021_03_07-2.jpg";
+import resume1 from "../../resources/Resume1.jpg";
+import { ResumeDownloader } from ".";
 
 const ResumeLeftWall = (props) => {
   const texture = useLoader(Three.TextureLoader, resume1);
@@ -16,6 +16,10 @@ const ResumeLeftWall = (props) => {
         side={Three.DoubleSide}
         color={"white"}
         map={texture}
+      />
+      <ResumeDownloader
+        position={[0, -22.5, 0.1]}
+        font={props.resources.font}
       />
     </mesh>
   );

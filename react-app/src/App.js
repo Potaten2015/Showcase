@@ -20,6 +20,7 @@ import {
   MapControls,
   FlyControls,
   TrackballControls,
+  Stats,
 } from "@react-three/drei";
 import {} from "three/examples/jsm/controls/OrbitControls";
 
@@ -32,8 +33,6 @@ import { commentFields } from "./components/CommentBoard";
 import { FrameLimiter } from "./components/FrameLimiter";
 
 const App = () => {
-  // REF VARIABLES
-
   const dispatch = useDispatch();
 
   const [authenticated, setAuthenticated] = useState(false);
@@ -143,7 +142,6 @@ const App = () => {
 
   return (
     <>
-      {/* <button onClick={(e) => {}}>Tester</button> */}
       <Switch>
         <Route path="/" authenticated={authenticated}>
           <form className="hidden">
@@ -151,6 +149,7 @@ const App = () => {
               return (
                 <input
                   maxLength="16"
+                  minLength="1"
                   autoComplete="off"
                   className="hidden"
                   id={"login" + field.fieldName}
@@ -175,6 +174,7 @@ const App = () => {
               return (
                 <input
                   maxLength="16"
+                  minLength={field.fieldName != "company" ? "1" : "0"}
                   autoComplete="off"
                   className="hidden"
                   id={"signup" + field.fieldName}
@@ -199,6 +199,7 @@ const App = () => {
               return (
                 <input
                   maxLength={255}
+                  minLength={1}
                   autoComplete="off"
                   className="hidden"
                   id={"comment" + field.fieldName}
@@ -219,7 +220,6 @@ const App = () => {
             })}
           </form>
           <Canvas
-            // onPointerMove={(e) => console.log(e)}
             shadowMap
             shadow-mapsize-width={100}
             shadow-mapsize-height={100}
@@ -229,6 +229,7 @@ const App = () => {
             shadow-camera-top={10}
             shadow-camera-bottom={-10}>
             <fog attach="fog" args={["hotpink", 45, 100]} />
+            <Stats />
             <FrameLimiter fps={15} />
             <Environment
               authenticated={authenticated}

@@ -16,6 +16,9 @@ const CommentBoardRight = (props) => {
     "hotpink",
   ];
 
+  const [badSubmit, setBadSubmit] = useState(false);
+  const [goodSubmit, setGoodSubmit] = useState(false);
+
   const colorHoverObject = {};
   colors.forEach((theColor) => {
     colorHoverObject[theColor] = false;
@@ -169,10 +172,40 @@ const CommentBoardRight = (props) => {
                     key={"button"}
                     onPointerEnter={(e) => setEnterHovered(true)}
                     onPointerLeave={(e) => setEnterHovered(false)}
-                    onClick={(e) => props.resources.submitComment()}
+                    onClick={(e) => {
+                      if (
+                        props.resources.commentFormState["content"].length >
+                          0 &&
+                        !badSubmit &&
+                        !goodSubmit
+                      ) {
+                        props.resources.submitComment();
+                        props.resources.setCommentFormState((prev) => {
+                          const newState = Object.assign({}, prev);
+                          newState["content"] = "";
+                          newState["color"] = "white";
+                          return newState;
+                        });
+                        setGoodSubmit(true);
+                        setTimeout(() => {
+                          setGoodSubmit(false);
+                        }, 5000);
+                      } else {
+                        setBadSubmit(true);
+                        setTimeout(() => {
+                          setBadSubmit(false);
+                        }, 3000);
+                      }
+                    }}
                     font={props.resources.font}
                     size={1}
-                    text={"Submit Comment"}
+                    text={
+                      badSubmit
+                        ? "Type Something"
+                        : goodSubmit
+                        ? "Thanks!"
+                        : "Submit Comment"
+                    }
                     position={[15, 15 - 1.3 * index - 2, -3.5]}
                     color={
                       enterHovered

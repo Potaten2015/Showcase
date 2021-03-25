@@ -16,7 +16,7 @@ const TextStandard = (props) => {
       castShadow
       ref={mesh}
       position={props.position}
-      rotation-y={props["rotation-y"]}>
+      rotation-y={props["rotation-y"] ? props["rotation-y"] : 0}>
       <textGeometry attach="geometry" args={[props.text, textOptions]} />
       <meshPhongMaterial
         attach="material"
@@ -29,7 +29,11 @@ const TextStandard = (props) => {
         onPointerEnter={props.onPointerEnter}
         onPointerLeave={props.onPointerLeave}
         onClick={props.onClick}
-        position={[1 + props.backDropX, 0.3, 0]}>
+        position={[
+          1 + props.backDropX,
+          props.backDropY ? 0.3 + props.backDropY : 0.3,
+          0,
+        ]}>
         <boxBufferGeometry
           attach="geometry"
           args={[
@@ -38,7 +42,11 @@ const TextStandard = (props) => {
             0,
           ]}
         />
-        <meshPhongMaterial attach="material" transparent={true} opacity={0.3} />
+        <meshPhongMaterial
+          attach="material"
+          transparent={true}
+          opacity={props.backDropOpacity ? props.backDropOpacity : 0.3}
+        />
       </mesh>
     </mesh>
   );
