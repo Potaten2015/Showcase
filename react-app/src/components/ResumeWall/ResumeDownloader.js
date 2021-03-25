@@ -30,6 +30,7 @@ const ResumeDownloader = (props) => {
         thickness={0.1}
         font={props.font}
       />
+
       <TextButton
         onPointerEnter={(e) => setPdfHovered(true)}
         onPointerLeave={(e) => setPdfHovered(false)}
