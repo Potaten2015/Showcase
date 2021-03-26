@@ -10,11 +10,11 @@ const LiveLink = (props) => {
       onPointerLeave={(e) => setHovered(false)}
       onClick={(e) => window.open(props.link, "_blank")}
       font={props.font}
-      size={0.6}
+      size={0.5}
       thickness={0.1}
       position={props.position ? props.position : [-4, -2, 0]}
       text={props.text}
-      color={hovered ? "lightblue" : "white"}
+      color={hovered ? "black" : "white"}
       backDropX={props.backDropX ? props.backDropX : 0}
       backDropHeight={props.backDropHeight ? props.backDropHeight : 1.3}
       backDropOpacity={props.backDropOpacity ? props.backDropOpacity : null}

@@ -20,45 +20,45 @@ const ResumeRightWall = (props) => {
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-9.8, 6.8, 0.1]}
+        position={[-9.6, 6.8, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
-        backDropX={0.4}
-        backDropY={0}
+        backDropX={0.2}
+        backDropY={-0.05}
         link={"https://tatenknight.herokuapp.com/"}
       />
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-11.1, 2.35, 0.1]}
+        position={[-10.9, 2.35, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
-        backDropX={0.4}
-        backDropY={0}
+        backDropX={0.2}
+        backDropY={-0.05}
         link={"https://create-resumes.herokuapp.com/"}
       />
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-9.1, -2, 0.1]}
+        position={[-8.9, -2, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
-        backDropX={0.4}
-        backDropY={0}
+        backDropX={0.2}
+        backDropY={-0.05}
         link={"https://buy-sourced.herokuapp.com/"}
       />
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-6.15, -6.4, 0.1]}
+        position={[-5.95, -6.4, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
-        backDropX={0.4}
-        backDropY={0}
+        backDropX={0.2}
+        backDropY={-0.05}
         link={"https://goodeats-c-j-j-t.herokuapp.com/"}
       />
       <ResumeDownloader

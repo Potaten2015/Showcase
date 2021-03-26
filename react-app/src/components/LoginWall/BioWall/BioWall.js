@@ -19,8 +19,10 @@ import MatlabIcon from "../../../resources/Icon/matlab-seeklogo.com.svg";
 import SequelizeIcon from "../../../resources/Icon/10223313071580802969.svg";
 import LinkedInIcon from "../../../resources/Icon/iconfinder_Rounded_Linkedin2_svg_5282542.svg";
 import AngelIcon from "../../../resources/Icon/angel-icon.svg";
+import MovementImage from "../../../resources/movement.png";
 
 const BioWall = (props) => {
+  const texture = useLoader(Three.TextureLoader, MovementImage);
   return (
     <mesh {...props} receiveShadow>
       <boxBufferGeometry attach="geometry" args={[28, 40, 4]} />
@@ -126,6 +128,15 @@ const BioWall = (props) => {
         hoverable={true}
         link={"https://angel.co/u/taten-hall-knight"}
       />
+      <mesh position={[0, -5, -3]} rotation-y={Math.PI}>
+        <planeGeometry attach="geometry" args={[25, 15, 1, 1]} />
+        <meshPhongMaterial
+          attach="material"
+          side={Three.DoubleSide}
+          color={"white"}
+          map={texture}
+        />
+      </mesh>
     </mesh>
   );
 };

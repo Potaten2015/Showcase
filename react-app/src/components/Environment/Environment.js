@@ -55,10 +55,6 @@ const Environment = (props) => {
       mainCamObject.current.rotation.z += 0.1 * xPercent ** 2;
     if (yPercent > 0.3) persCam.current.rotation.x += 0.1 * yPercent ** 2;
     if (yPercent < -0.3) persCam.current.rotation.x -= 0.1 * yPercent ** 2;
-    if (keyPressed["ArrowLeft"]) mainCamObject.current.rotation.z += 0.01;
-    if (keyPressed["ArrowRight"]) mainCamObject.current.rotation.z -= 0.01;
-    if (keyPressed["ArrowDown"]) persCam.current.rotation.x += 0.01;
-    if (keyPressed["ArrowUp"]) persCam.current.rotation.x -= 0.01;
     if (keyPressed[" "]) mainCamObject.current.position.z += 0.8;
     if (keyPressed["Control"]) mainCamObject.current.position.z -= 0.8;
     if (keyPressed["s"]) persCam.current.position.y += 1;

@@ -4,6 +4,7 @@ import img from "../../resources/Earth_8k_Disp_v001.png";
 import img2 from "../../resources/Equirectangular_projection_SW.jpg";
 import { useLoader } from "react-three-fiber";
 import { Box, Pin } from "../Shapes/";
+import { TextStandard } from "../TextGeometry";
 
 const WorldMap = (props) => {
   const mapMesh = useRef();
@@ -16,7 +17,7 @@ const WorldMap = (props) => {
 
   return (
     <mesh {...props} receiveShadow castShadow ref={mapMesh}>
-      <planeGeometry attach="geometry" args={[100, 50, 200, 100]} />
+      <planeGeometry attach="geometry" args={[100, 50, 1000, 500]} />
       <meshPhongMaterial
         attach="material"
         // side={Three.DoubleSide}
@@ -80,6 +81,23 @@ const WorldMap = (props) => {
           isYours={true}
         />
       )}
+      <mesh position={[-30, -10, 3]} rotation-x={Math.PI / 2}>
+        <boxBufferGeometry attach="geometry" args={[10, 0.1, 10]} />
+        <meshPhongMaterial attach="material" color={"black"} />
+        <mesh position={[-4.8, 0, -3]}>
+          <TextStandard
+            rotation-x={-Math.PI / 2}
+            font={props.resources.font}
+            size={0.8}
+            thickness={0.1}
+            text={`Hover over pins for
+more visitor info.
+Yours is yellow (if
+you allowed location
+access)`}
+          />
+        </mesh>
+      </mesh>
     </mesh>
   );
 };
