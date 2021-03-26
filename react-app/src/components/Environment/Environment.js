@@ -59,8 +59,8 @@ const Environment = (props) => {
     if (keyPressed["ArrowRight"]) mainCamObject.current.rotation.z -= 0.01;
     if (keyPressed["ArrowDown"]) persCam.current.rotation.x += 0.01;
     if (keyPressed["ArrowUp"]) persCam.current.rotation.x -= 0.01;
-    if (keyPressed["Shift"]) mainCamObject.current.position.z += 0.1;
-    if (keyPressed["Control"]) mainCamObject.current.position.z -= 0.1;
+    if (keyPressed[" "]) mainCamObject.current.position.z += 0.8;
+    if (keyPressed["Control"]) mainCamObject.current.position.z -= 0.8;
     if (keyPressed["s"]) persCam.current.position.y += 1;
     if (keyPressed["w"]) persCam.current.position.y -= 1;
     if (keyPressed["a"]) persCam.current.position.x += 1;

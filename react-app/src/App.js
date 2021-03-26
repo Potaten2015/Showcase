@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate, login, logout, signup } from "./store/session";
 import {
@@ -13,16 +13,10 @@ import { Canvas } from "react-three-fiber";
 import * as Three from "../node_modules/three/build/three";
 import Cooper from "./resources/Cooper Hewitt_Thin_Reversed.json";
 import {} from "./components/Forms/";
-import {
-  PerspectiveCamera,
-  OrbitControls,
-  PointerLockControls,
-  MapControls,
-  FlyControls,
-  TrackballControls,
-  Stats,
-} from "@react-three/drei";
+import { Stats } from "@react-three/drei";
 import {} from "three/examples/jsm/controls/OrbitControls";
+import ResumePdf from "./resources/Knight_Taten_Resume.pdf";
+import ResumeDoc from "./resources/Knight_Taten_Resume.doc";
 
 // FOR LOG IN AND SIGN UP
 import {
@@ -143,7 +137,7 @@ const App = () => {
   return (
     <>
       <Switch>
-        <Route path="/" authenticated={authenticated}>
+        <Route path="/" exact={true} authenticated={authenticated}>
           <form className="hidden">
             {LoginFormFields.map((field) => {
               return (
@@ -220,16 +214,18 @@ const App = () => {
             })}
           </form>
           <a
-            href="/react-app/src/resources/Knight_Taten_Resume.doc"
-            download
+            href={ResumeDoc}
             id={"downloadDoc"}
             className="hidden"
+            target="_blank"
+            download
           />
           <a
-            href="/react-app/src/resources/Knight_Taten_Resume.pdf"
-            download
+            href={ResumePdf}
             id={"downloadPdf"}
             className="hidden"
+            target="_blank"
+            download
           />
           <Canvas
             shadowMap
