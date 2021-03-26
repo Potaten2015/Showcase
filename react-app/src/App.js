@@ -219,6 +219,18 @@ const App = () => {
               );
             })}
           </form>
+          <a
+            href="/react-app/src/resources/Knight_Taten_Resume.doc"
+            download
+            id={"downloadDoc"}
+            className="hidden"
+          />
+          <a
+            href="/react-app/src/resources/Knight_Taten_Resume.pdf"
+            download
+            id={"downloadPdf"}
+            className="hidden"
+          />
           <Canvas
             shadowMap
             shadow-mapsize-width={100}

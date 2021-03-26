@@ -7,14 +7,11 @@ import { TextButton, TextStandard } from "../TextGeometry";
 const ResumeDownloader = (props) => {
   const [docxHovered, setDocxHovered] = useState(false);
   const [pdfHovered, setPdfHovered] = useState(false);
+  const pdfButton = document.getElementById("downloadPdf");
+  const docButton = document.getElementById("downloadDoc");
 
   return (
-    <mesh
-      onPointerEnter={props.onPointerEnter}
-      onPointerLeave={props.onPointerLeave}
-      onPointerMissed={props.onPointerMissed}
-      onClick={props.onClick}
-      position={props.position}>
+    <mesh position={props.position}>
       <boxBufferGeometry attach="geometry" args={[20, 1.5, 0]} />
       <meshPhongMaterial
         attach="material"
@@ -34,7 +31,9 @@ const ResumeDownloader = (props) => {
       <TextButton
         onPointerEnter={(e) => setPdfHovered(true)}
         onPointerLeave={(e) => setPdfHovered(false)}
-        onClick={(e) => {}}
+        onClick={(e) => {
+          pdfButton.click();
+        }}
         font={props.font}
         size={0.9}
         thickness={0.1}
@@ -49,7 +48,9 @@ const ResumeDownloader = (props) => {
       <TextButton
         onPointerEnter={(e) => setDocxHovered(true)}
         onPointerLeave={(e) => setDocxHovered(false)}
-        onClick={(e) => {}}
+        onClick={(e) => {
+          docButton.click();
+        }}
         font={props.font}
         size={0.9}
         thickness={0.1}
