@@ -1,7 +1,4 @@
-import React, { useRef, useState } from "react";
-import { applyProps, useFrame, useLoader } from "react-three-fiber";
-import { Box } from "../Shapes";
-import * as Three from "../../../node_modules/three/build/three";
+import React, { useState } from "react";
 import { TextButton, TextStandard } from "../TextGeometry";
 
 const ResumeDownloader = (props) => {

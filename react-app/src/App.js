@@ -227,6 +227,7 @@ const App = () => {
             target="_blank"
             download
           />
+          <a href="/" className="hidden" />
           <Canvas
             shadowMap
             shadow-mapsize-width={100}

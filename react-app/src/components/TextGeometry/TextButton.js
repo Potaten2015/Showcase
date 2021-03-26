@@ -24,7 +24,7 @@ const TextStandard = (props) => {
         side={Three.DoubleSide}
       />
       <mesh
-        receiveShadow
+        receiveShadoww
         castShadow
         onPointerEnter={props.onPointerEnter}
         onPointerLeave={props.onPointerLeave}
