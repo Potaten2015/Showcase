@@ -20,7 +20,7 @@ const ResumeRightWall = (props) => {
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-9.6, 6.8, 0.1]}
+        position={[-9.3, 12.0, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
@@ -31,7 +31,7 @@ const ResumeRightWall = (props) => {
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-10.9, 2.35, 0.1]}
+        position={[-10.9, 7.6, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
@@ -42,7 +42,7 @@ const ResumeRightWall = (props) => {
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-8.9, -2, 0.1]}
+        position={[-8.9, 3.25, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
@@ -53,13 +53,26 @@ const ResumeRightWall = (props) => {
       <LiveLink
         font={props.resources.font}
         text={"Live Link"}
-        position={[-5.95, -6.4, 0.1]}
+        position={[-5.95, -1.15, 0.1]}
         backDropWidth={3}
         backDropHeight={0.9}
         backDropOpacity={1}
         backDropX={0.2}
         backDropY={-0.05}
         link={"https://goodeats-c-j-j-t.herokuapp.com/"}
+      />
+      <LiveLink
+        font={props.resources.font}
+        text={"Live Link"}
+        position={[-6.6, -5.5, 0.1]}
+        backDropWidth={3}
+        backDropHeight={0.9}
+        backDropOpacity={1}
+        backDropX={0.2}
+        backDropY={-0.05}
+        link={
+          "https://play.google.com/store/apps/details?id=com.potaten2015.wallz"
+        }
       />
       <ResumeDownloader
         position={[0, -22.5, 0.1]}

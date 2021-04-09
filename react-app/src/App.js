@@ -16,7 +16,7 @@ import {} from "./components/Forms/";
 import { Stats } from "@react-three/drei";
 import {} from "three/examples/jsm/controls/OrbitControls";
 import ResumePdf from "./resources/Knight_Taten_Resume.pdf";
-import ResumeDoc from "./resources/Knight_Taten_Resume.doc";
+import ResumeDoc from "./resources/Knight_Taten_Resume.docx";
 
 // FOR LOG IN AND SIGN UP
 import {
