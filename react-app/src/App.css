@@ -1,0 +1,15 @@
+.entry_screen {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry_screen > button {
+  width: 20vw;
+  height: 10vw;
+  padding: 3px;
+  margin: 5px;
+}
