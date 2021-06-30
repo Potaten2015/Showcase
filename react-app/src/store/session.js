@@ -27,20 +27,22 @@ export const authenticate = () => async (dispatch) => {
   return user;
 };
 
-export const login = ({ username, password }) => async (dispatch) => {
-  const formData = new FormData();
-  formData.append("username", username);
-  formData.append("password", password);
-  const response = await fetch("/api/auth/login", {
-    method: "POST",
-    body: formData,
-  });
-  const user = await response.json();
-  if (!user.errors) {
-    dispatch(setUser(user));
-  }
-  return user;
-};
+export const login =
+  ({ username, password }) =>
+  async (dispatch) => {
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      body: formData,
+    });
+    const user = await response.json();
+    if (!user.errors) {
+      dispatch(setUser(user));
+    }
+    return user;
+  };
 
 export const logout = () => async (dispatch) => {
   const response = await fetch("/api/auth/logout", {
@@ -53,34 +55,28 @@ export const logout = () => async (dispatch) => {
   return message;
 };
 
-export const signup = ({
-  username,
-  password,
-  city,
-  state,
-  company,
-  latitude,
-  longitude,
-}) => async (dispatch) => {
-  const formData = new FormData();
-  formData.append("username", username);
-  formData.append("password", password);
-  formData.append("city", city);
-  formData.append("state", state);
-  formData.append("company", company);
-  formData.append("latitude", latitude);
-  formData.append("longitude", longitude);
+export const signup =
+  ({ username, password, city, state, company, latitude, longitude }) =>
+  async (dispatch) => {
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("company", company);
+    formData.append("latitude", latitude);
+    formData.append("longitude", longitude);
 
-  const response = await fetch("/api/auth/signup", {
-    method: "POST",
-    body: formData,
-  });
-  const user = await response.json();
-  if (!user.errors) {
-    dispatch(setUser(user));
-  }
-  return user;
-};
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: formData,
+    });
+    const user = await response.json();
+    if (!user.errors) {
+      dispatch(setUser(user));
+    }
+    return user;
+  };
 
 const initialState = {
   user: null,

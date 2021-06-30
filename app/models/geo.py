@@ -12,7 +12,7 @@ class Geo(db.Model):
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
 
-    user=db.relationship("User", back_populates="geo")
+    user = db.relationship("User", back_populates="geo")
 
     def to_dict(self):
         return {

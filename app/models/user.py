@@ -10,8 +10,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     hashedPassword = db.Column(db.String(255), nullable=True)
 
-    comments=db.relationship("Comment", back_populates="user", cascade="all, delete-orphan")
-    geo=db.relationship("Geo", back_populates="user", cascade="all, delete-orphan")
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete-orphan")
+    geo = db.relationship("Geo", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
